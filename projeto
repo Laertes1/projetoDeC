@@ -1,0 +1,47 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+#define linha 6
+#define coluna 6
+
+
+
+char *movs[4] = {"\\", "|", "-", "/"};  
+
+void exibetabuleiro(char * tabu[linha][coluna]){
+printf("    ");
+
+    
+    for(int i=0; i<coluna; i++){
+        printf("%d   ", i+1); // cabeçalho da coluna
+    }
+    printf("\n");
+
+    for( int i=0; i<linha; i++){
+        printf("%c |", 'A'+i); // cabeçalho da linha
+
+        for(int j=0; j<coluna; j++){
+            printf(" %s |", tabu[i][j]);
+        }
+        printf("\n");
+    }
+}
+
+int main(){
+    char * tabuleiro[linha][coluna];
+    srand(time(NULL));
+   
+    //tabuleiro com espaços em branco
+   
+    for( int i=0; i<linha; i++){
+        for(int j=0; j<coluna; j++){
+          
+            tabuleiro[i][j] = movs[rand() % 4];
+        }
+    }
+
+    exibetabuleiro(tabuleiro);
+
+    return 0;
+}
